@@ -1,0 +1,10 @@
+.git
+.github
+.gitignore
+.assetsignore
+scripts
+package.json
+package-lock.json
+wrangler.jsonc
+wrangler.toml
+README.md
