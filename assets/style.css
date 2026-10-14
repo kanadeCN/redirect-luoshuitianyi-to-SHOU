@@ -1,0 +1,175 @@
+/* Material Design 3 (Material You) 风格 · 洛水天依跳转页 */
+
+:root {
+  /* —— MD3 颜色令牌（浅色主题，主色取自天依应援色 #66CCFF）—— */
+  --md-primary: #00658f;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #c9e6ff;
+  --md-on-primary-container: #001e2e;
+  --md-secondary: #4f616e;
+  --md-surface: #f8f9ff;
+  --md-surface-container-low: #f2f3fa;
+  --md-on-surface: #191c20;
+  --md-on-surface-variant: #41474d;
+  --md-outline-variant: #c1c7ce;
+
+  /* —— MD3 形状令牌 —— */
+  --md-corner-large: 28px;
+  --md-corner-full: 999px;
+
+  /* —— MD3 高度令牌（elevation）—— */
+  --md-elevation-2: 0 1px 2px rgba(0, 0, 0, .09), 0 2px 6px 2px rgba(0, 0, 0, .08);
+  --md-elevation-3: 0 1px 3px rgba(0, 0, 0, .10), 0 4px 8px 3px rgba(0, 0, 0, .08);
+
+  /* —— 行为参数 —— */
+  --scrim-opacity: .5;
+  --redirect-ms: 7000ms;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto", "Noto Sans SC", "PingFang SC", "Microsoft YaHei",
+               system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--md-on-surface);
+  overflow: hidden;
+  background: var(--md-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* —— 背景：撑满、等比缩放、不拉伸 —— */
+.bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+.bg.is-ready { opacity: 1; }
+
+/* —— 淡淡白色遮罩 —— */
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, var(--scrim-opacity));
+  backdrop-filter: saturate(115%) brightness(1.02);
+}
+
+/* —— 内容：底部居中 —— */
+.content {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 24px clamp(16px, 5vw, 48px) max(72px, calc(env(safe-area-inset-bottom) + 48px));
+}
+
+/* —— MD3 卡片 —— */
+.card {
+  width: min(520px, 100%);
+  background: color-mix(in srgb, var(--md-surface-container-low) 88%, transparent);
+  border-radius: var(--md-corner-large);
+  box-shadow: var(--md-elevation-2);
+  padding: 22px 26px 18px;
+  animation: rise .6s cubic-bezier(.2, 0, 0, 1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* —— 状态文字（MD3 title-medium）—— */
+.status {
+  margin: 0 0 16px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: .1px;
+  color: var(--md-on-surface);
+}
+
+.status__dots::after {
+  content: "";
+  animation: dots 1.4s steps(1, end) infinite;
+}
+@keyframes dots {
+  0%   { content: ""; }
+  25%  { content: "."; }
+  50%  { content: ".."; }
+  75%  { content: "..."; }
+}
+
+/* —— MD3 线性进度条 —— */
+.progress { width: 100%; }
+
+.progress__track {
+  height: 4px;
+  border-radius: var(--md-corner-full);
+  background: var(--md-primary-container);
+  overflow: hidden;
+}
+
+.progress__bar {
+  height: 100%;
+  width: 0;
+  border-radius: var(--md-corner-full);
+  background: var(--md-primary);
+  transition: width var(--redirect-ms) linear;
+}
+
+/* —— 提示与署名（MD3 body-small / label-small）—— */
+.hint {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: .8125rem;
+  letter-spacing: .2px;
+  color: var(--md-on-surface-variant);
+}
+.hint__target { color: var(--md-primary); font-weight: 500; }
+
+.credit {
+  margin: 0;
+  text-align: center;
+  font-size: .75rem;
+  letter-spacing: .3px;
+  color: var(--md-on-surface-variant);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, .7);
+  min-height: 1em;
+}
+.credit__sep { opacity: .55; margin: 0 6px; }
+
+.credit__link {
+  color: var(--md-primary);
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 0 1px;
+  transition: background-color .15s ease, text-decoration-color .15s ease;
+}
+.credit__link:hover { text-decoration: underline; }
+.credit__link:focus-visible {
+  outline: 2px solid var(--md-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg, .progress__bar { transition-duration: .01ms; }
+  .card { animation: none; }
+  .status__dots::after { animation: none; content: "…"; }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>正在跳转…</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <img id="bg" class="bg" alt="">
+  <div class="scrim" aria-hidden="true"></div>
+
+  <main class="content">
+    <div class="card" role="status" aria-live="polite">
+      <p class="status">
+        <span class="status__text">正在跳转</span>
+        <span class="status__dots" aria-hidden="true"></span>
+      </p>
+
+      <div class="progress" role="progressbar" aria-label="跳转进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress__track">
+          <div class="progress__bar" id="bar"></div>
+        </div>
+      </div>
+
+      <p class="hint">将在 <span id="countdown">7</span> 秒后前往 <span class="hint__target">www.shou.edu.cn</span></p>
+    </div>
+
+    <p class="credit" id="credit"></p>
+  </main>
+
+  <script src="assets/pictures.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

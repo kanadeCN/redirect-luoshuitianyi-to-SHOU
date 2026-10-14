@@ -1,0 +1,10 @@
+{
+  "name": "luoshuitianyi-redirect",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "洛水天依.com 跳转页（纯静态，部署于 GitHub Pages）",
+  "scripts": {
+    "build": "node scripts/build-pictures.mjs"
+  }
+}
