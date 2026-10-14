@@ -1,11 +1,13 @@
 /* Material Design 3 (Material You) 风格 · 洛水天依跳转页 */
 
 :root {
-  /* —— MD3 颜色令牌（浅色主题，主色取自天依应援色 #66CCFF）—— */
-  --md-primary: #00658f;
-  --md-on-primary: #ffffff;
-  --md-primary-container: #c9e6ff;
-  --md-on-primary-container: #001e2e;
+  /* —— MD3 颜色令牌（浅色主题，主色 #66CCFF 天依蓝）—— */
+  --tianyi: #66ccff;
+  --md-primary: #66ccff;
+  --md-on-primary: #00243a;
+  --md-primary-container: #cfeaff;
+  --md-on-primary-container: #001a2b;
+  --md-primary-text: #006a9e;   /* 深一档，保证白底小字可读 */
   --md-secondary: #4f616e;
   --md-surface: #f8f9ff;
   --md-surface-container-low: #f2f3fa;
@@ -77,6 +79,39 @@ body {
   padding: 24px clamp(16px, 5vw, 48px) max(72px, calc(env(safe-area-inset-bottom) + 48px));
 }
 
+/* —— MD3 实心按钮（filled button）—— */
+.md-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 24px;
+  border: none;
+  border-radius: var(--md-corner-full);
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  font: inherit;
+  font-size: .875rem;
+  font-weight: 500;
+  letter-spacing: .1px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--md-elevation-2);
+  transition: box-shadow .2s ease, background-color .2s ease, transform .1s ease;
+  animation: rise .6s cubic-bezier(.2, 0, 0, 1) both;
+}
+.md-button:hover {
+  background: #5cc2f7;
+  box-shadow: var(--md-elevation-3);
+}
+.md-button:active { transform: translateY(1px); }
+.md-button:focus-visible {
+  outline: 3px solid var(--md-primary);
+  outline-offset: 2px;
+}
+.md-button__icon { width: 18px; height: 18px; flex: none; }
+
 /* —— MD3 卡片 —— */
 .card {
   width: min(520px, 100%);
@@ -141,7 +176,7 @@ body {
   letter-spacing: .2px;
   color: var(--md-on-surface-variant);
 }
-.hint__target { color: var(--md-primary); font-weight: 500; }
+.hint__target { color: var(--md-primary-text); font-weight: 500; }
 
 .credit {
   margin: 0;
@@ -155,7 +190,7 @@ body {
 .credit__sep { opacity: .55; margin: 0 6px; }
 
 .credit__link {
-  color: var(--md-primary);
+  color: var(--md-primary-text);
   font-weight: 500;
   text-decoration: none;
   border-radius: 4px;
